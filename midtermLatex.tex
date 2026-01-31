@@ -1,0 +1,187 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{setspace}
+\usepackage{hyperref}
+
+\setstretch{1.1}
+
+\title{
+\textbf{Chair for Human-Centered Technologies for Learning}\\
+Technical University of Munich \\[0.8em]
+
+\textbf{Empathy in the Machine: How Avatar Personalities Shape Human Learning Experience}\\
+\vspace{0.3em}
+\large Mid-term Project Progress Overview
+}
+\author{
+Araks Karapetyan \and
+Brishila Firza \and
+Nergis Bilge \and
+Yiyang Xie \and
+Yusong Yang \\[0.5em]
+Supervisor: Prof.\ Dr.\ Enkelejda Kasneci \\
+Advisor: Dr.\ Efe Bozkir
+}
+\date{Submission Date: 19.12.2025}
+\begin{document}
+\maketitle
+
+
+\vspace{1em}
+\maketitle
+
+\vspace{-1.5em}
+
+\section*{1. Current Project Status}
+
+At the time of submission, the project has a functional prototype of an avatar-supported, LLM-based educational system. Two avatar personalities (supportive and neutral) have been fully implemented and integrated with structured psychology learning scenarios. The system supports interactive tutoring, quiz-based feedback, and adaptive behavior in the supportive condition.\\
+
+Multiple system prototypes were developed to support iterative testing, including Streamlit- and Gradio-based versions with and without avatar visualization. Preparations for a controlled user study are underway, including questionnaire drafting and study design. The project is currently transitioning from system development to evaluation and data collection.
+
+\section*{2. Overview of Completed and Ongoing Tasks}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{2.5cm} 
+                  >{\raggedright\arraybackslash}p{5cm} 
+                  >{\raggedright\arraybackslash}p{2.5cm} 
+                  >{\centering\arraybackslash}p{1.5cm} 
+                  >{\raggedright\arraybackslash}p{3cm}}
+
+\toprule
+\textbf{Task} & \textbf{Description / Outcome} & \textbf{Responsible Member(s)} & \textbf{Status} & \textbf{TODO / Next Steps} \\
+\midrule
+
+\textbf{Initial project ideation \& weekly discussion} &
+Participated in the initial and weely group meeting, contributed ideas on project direction, research focus, and potential methodological approaches. &
+All &
+Completed &
+Further refinement of research questions \\
+
+\midrule
+\textbf{Shared workspace \& group coordination} &
+Organized internal group workflow, established shared online workspace (Word, PPT), and coordinated group communication. &
+Araks Karapetyan &
+Completed &
+Maintain coordination and documentation \\
+
+\midrule
+\textbf{Project concept, learning structure \& literature review} &
+Defined project goals, designed learning structure, reviewed relevant literature, and planned semester workload. &
+All &
+Completed &
+Formalize background and related work \\
+
+\midrule
+\textbf{Pitch 1 presentation PPT} &
+Prepared slides for the first project pitch presentation. &
+Araks Karapetyan; Yiyang Xie; Yusong Yang &
+Completed &
+Incorporate feedback \\
+
+\midrule
+\textbf{Pitch 1 presentation} &
+Delivered the first project pitch presentation. &
+Brishila Firza &
+Completed &
+Incorporate feedback \\
+
+\midrule
+\textbf{Learning scenarios 1--5 (content, prompts \& quizzes)} &
+Designed detailed learning content, system prompts, and quiz questions for five psychology topics. &
+Araks Karapetyan(S1); Brishila Firza(S2); Yiyang Xie(S3--5) &
+Completed &
+Refinement after user testing \\
+
+\midrule
+\textbf{Prompt design, avatar \& chatbot integration} &
+Implemented prompt logic, LLM-based chatbot, and avatar behavior using Python in a web-based UI. &
+Yiyang Xie &
+Completed &
+Improve robustness and UX \\
+
+\midrule
+\textbf{LLM deployment \& technical setup} &
+Configured OpenAI API access, token control, and development environment. &
+Yiyang Xie &
+Completed &
+Optimize performance and cost \\
+
+\midrule
+\textbf{Debugging \& internal mentoring} &
+Conducted debugging, system testing, mentor consultations, and recorded an instructional video for group members. &
+Yiyang Xie &
+Ongoing &
+Continue iteration \\
+
+\midrule
+\textbf{Mid-term report preparation} &
+Compiled and edited the mid-term report content. Structured, wrote, and formatted the mid-term report using LaTeX. &
+All &
+Completed &
+Reuse structure for final report \\
+
+\midrule
+\textbf{Authoritative avatar (optional)} &
+Optional design of an authoritative teaching persona for comparison. &
+Araks Karapetyan &
+Planned &
+Implement prompt logic \\
+
+\midrule
+\textbf{User study questionnaire} &
+Created an initial questionnaire including demographics, Likert-scale items, and pre/post knowledge questions. &
+All &
+Ongoing &
+Finalize study protocol \\
+
+\midrule
+\textbf{User study analysis} &
+Post-study survey to analyse people interaction with the avatar. &
+All &
+Ongoing \\
+% gfdsgd
+
+\midrule
+\textbf{Final report preparation} &
+Compiled and edited the final report content. &
+All &
+Ongoing \\
+
+\bottomrule
+\end{longtable}
+
+\textbf{Upcoming Work Summary} \\
+The next phase of the project will focus on improving system functionality, enriching domain knowledge, and completing the empirical evaluation. Specifically, planned tasks include integrating speech support for the avatar, optimizing response speed and verbosity, and clarifying the avatar’s assumed prior knowledge to better guide user interactions. In parallel, the psychological knowledge base of the avatar will be expanded to ensure accurate and pedagogically meaningful responses. The collected user study data will be analyzed to compare the effectiveness of different avatar personalities on learning outcomes and user experience. Finally, the group will prepare a video presentation demonstrating the system, experimental design, and preliminary findings.
+
+
+
+\section*{3. Development Artifacts and Tools}
+
+\textbf{Implemented Code Files}
+\begin{itemize}
+  \item \texttt{chatbotScript.py}: Core chatbot logic and reusable LLM interaction functions
+  \item \texttt{SafePredifine.py}: Utility functions, safety logic, and predefined configurations
+  \item \texttt{appSimuChatGPT.py}: Streamlit prototype (version 1) without avatar
+  \item \texttt{app0avatar.py}: Streamlit testing version without avatar
+  \item \texttt{app2avatar.py}: Streamlit version 2 with integrated 3D avatar
+  \item \texttt{appGradio.py}: Gradio-based chatbot prototype without avatar
+\end{itemize}
+
+\textbf{Libraries and Frameworks Used:}
+OpenAI API, tiktoken, Streamlit, Gradio
+
+\section*{4. Missing Components and Planned Work}
+
+\textbf{Currently incomplete:}
+Speech support for the avatar, implementation of the authoritative avatar personality, and finalized user study protocol.
+
+\textbf{Planned next steps:}
+Finalize the user study design, conduct data collection during the break, analyze results, extend the system with an authoritative avatar, and prepare the final presentation and report.
+
+\section*{5. Conclusion}
+
+The project has reached a stable and functional mid-term state. Core system components, learning scenarios, and two avatar personalities have been successfully implemented, and the project is well positioned to proceed with evaluation and data collection.
+
+\end{document}

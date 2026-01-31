@@ -1,0 +1,198 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{titlesec}
+
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.5em}{}
+\titleformat{\subsubsection}{\normalsize\itshape}{\thesubsubsection}{0.5em}{}
+
+\title{\textbf{Designing and Evaluating AI-Driven Educational Avatars for Psychology Learning}}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\doublespacing
+
+\section{Introduction}
+
+With the widespread application of artificial intelligence in education, intelligent tutoring systems based on Large Language Models (LLMs) are gradually becoming an important part of modern learning environments. Compared with static learning materials, dialogue-based learning methods better support personalized guidance, immediate feedback, and reflective learning. However, existing AI teaching systems often prioritize knowledge transmission efficiency while neglecting emotional factors such as learning enthusiasm, trust, and the feeling of being understood.
+
+In disciplines such as psychology, which emphasize conceptual understanding and the cultivation of empathy, simple information transmission is often insufficient. Learners must not only acquire theoretical knowledge but also develop judgments and reflect on their understanding through interaction. Consequently, designing AI teaching systems with differentiated instructional roles and interaction styles has become a critical research question in human--AI interaction and learning sciences.
+
+This project aims to design and implement a multi-role instructional avatar system based on learning modeling. The system guides learners through psychology-related tasks using conversational avatars with distinct instructional personalities (e.g., supportive and neutral), and evaluates how different avatar designs influence learning experience and outcomes through user research.
+
+The main contributions of this project are as follows:
+
+\begin{itemize}[leftmargin=*]
+    \item Designing and implementing an LLM-based instructional avatar prototype;
+    \item Proposing a system-prompt-based instructional role modeling method;
+    \item Designing and conducting a user study to evaluate learning effectiveness and subjective experience across avatar modes.
+\end{itemize}
+
+\subsection{Challenges in AI-Assisted Learning}
+
+\begin{itemize}[leftmargin=*]
+    \item Existing AI teaching systems lack systematic modeling of emotions and empathy;
+    \item Learning evaluations often emphasize knowledge acquisition while neglecting subjective experience;
+    \item AI teacher personality design lacks controllable variables and rigorous experimental control.
+\end{itemize}
+
+\subsection{Research Motivation: The Potential of Personalized AI Avatars in Education}
+
+\begin{itemize}[leftmargin=*]
+    \item Avatars can enhance social presence and immersion;
+    \item LLMs support adjustable language styles and teaching strategies;
+    \item Personality serves as a suitable independent variable for experimental research.
+\end{itemize}
+
+\subsection{Project Objectives and Research Questions}
+
+The objective of this project is to construct an avatar-based learning system that supports multiple AI teaching personalities and to analyze their effects on learning experience through empirical research.
+
+The research questions include:
+
+\begin{enumerate}[leftmargin=*]
+    \item How do different AI avatar personalities (supportive vs.\ neutral) affect learners' perceived empathy and trust?
+    \item Do avatar personality and expressive behaviors influence learning motivation and engagement?
+    \item Do different instructional personalities lead to measurable differences in learning outcomes?
+\end{enumerate}
+
+\section{Related Work}
+
+\subsection{Applications of Large Language Models in Education}
+
+Large language models have been increasingly applied in intelligent tutoring systems, automated feedback generation, and learning support tools. Prior studies indicate that dialogue-based AI systems can enhance learning motivation and short-term learning outcomes. However, most systems focus primarily on answer correctness rather than supporting the learning process itself.
+
+\subsection{Pedagogical Agents and Human--Computer Interaction}
+
+Research on pedagogical agents shows that social cues such as role definition and language style influence learners' trust and engagement. While different instructional roles (e.g., authoritative versus supportive) may have distinct effects, systematic investigations within LLM-driven systems remain limited.
+
+\subsection{User Research and Learning Assessment Methods}
+
+Human--AI interaction research commonly employs pre-/post-tests, Likert-scale questionnaires, and qualitative feedback. Mixed-method approaches combining quantitative and qualitative analyses have become the dominant evaluation paradigm.
+
+\section{System Design}
+
+\subsection{Overall Architecture}
+
+The system adopts a modular architecture consisting of the following components:
+
+\begin{itemize}[leftmargin=*]
+    \item Front-end interactive interface (Streamlit / Gradio);
+    \item LLM dialogue core (OpenAI API);
+    \item Prompt management and context control module;
+    \item Data logging and analysis module.
+\end{itemize}
+
+The system supports real-time text-based interaction and allows for future extensions to voice input/output and more expressive avatar behaviors.
+
+\subsection{LLM Architecture and Prompt Design}
+
+\subsubsection{System, User, and Assistant Roles}
+
+The interaction logic follows OpenAI’s three-role dialogue structure:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{System Prompt}: Defines the avatar’s teaching role, behavioral boundaries, and language style, persisting throughout the interaction;
+    \item \textbf{User Prompt}: Represents learner input, including questions, answers, or reflections;
+    \item \textbf{Assistant Response}: Generated by the LLM based on system and user inputs, providing explanations and feedback.
+\end{itemize}
+
+This structure enables instructional design to be embedded directly into system logic through prompt engineering.
+
+\subsubsection{System Prompt Practices for Instructional Roles}
+
+Different avatars are distinguished through carefully designed system prompts:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Supportive Avatar}: Emphasizes empathy, encouragement, and guided questioning;
+    \item \textbf{Neutral Avatar}: Emphasizes structured explanation, conceptual accuracy, and concise feedback.
+\end{itemize}
+
+This approach provides a technical foundation for controlled experimental conditions.
+
+\subsection{Tools and Technology Stack}
+
+\begin{itemize}[leftmargin=*]
+    \item Streamlit for rapid interface prototyping and user testing;
+    \item Gradio for independent verification of dialogue logic;
+    \item \texttt{tiktoken} for token counting and context-length control;
+    \item Ready Player Me for 3D avatar prototypes and expressive behaviors.
+\end{itemize}
+
+\section{Learning Scenario Design}
+
+Learning content is based on fundamental psychology topics (e.g., classical conditioning, memory types). All avatar personalities follow an identical instructional structure:
+
+\begin{enumerate}[leftmargin=*]
+    \item Introduction
+    \item Explanation
+    \item Example
+    \item Mini Quiz
+    \item Feedback
+    \item Wrap-up
+\end{enumerate}
+
+\section{Large Language Model Architecture and Prompt Engineering}
+
+\subsection{Role of LLMs in the System}
+
+The system employs a layered SYSTEM--USER--ASSISTANT architecture to decouple instructional content from personality style, improving controllability and reproducibility.
+
+\subsection{System Prompt Design Principles}
+
+System prompts explicitly constrain personality traits, including:
+
+\begin{itemize}[leftmargin=*]
+    \item Language style (encouraging vs.\ neutral);
+    \item Feedback strategy (soothing vs.\ corrective);
+    \item Emotional expressiveness.
+\end{itemize}
+
+By modifying only the system prompt, personality becomes the sole independent variable.
+
+\subsection{Advantages of Prompt Engineering}
+
+\begin{itemize}[leftmargin=*]
+    \item Easy extension to new personality types;
+    \item Compatibility with controlled experiments;
+    \item Reduced system complexity and maintenance cost.
+\end{itemize}
+
+\section{User Research Design}
+
+\subsection{Experimental Procedure}
+
+\begin{itemize}[leftmargin=*]
+    \item Demographic questionnaire;
+    \item Pre-learning test;
+    \item Interaction with a specific AI avatar personality;
+    \item Post-learning test and subjective evaluation.
+\end{itemize}
+
+\subsection{Measurement Metrics}
+
+\begin{itemize}[leftmargin=*]
+    \item Learning gain (pre-test vs.\ post-test);
+    \item Perceived empathy;
+    \item Learning motivation and satisfaction.
+\end{itemize}
+
+\section{Results and Discussion}
+
+Preliminary results indicate noticeable differences in subjective experience across avatar personalities, with potential relationships between instructional personality and learning outcomes.
+
+\section{Limitations and Future Work}
+
+Limitations include limited sample size and incomplete voice interaction integration. Future work will explore additional personality types and long-term learning effects.
+
+\section{Conclusion}
+
+This project demonstrates that personalized AI teaching avatars can enhance empathy and learning experience in educational systems, providing a practical foundation for future human-centered educational AI research.
+
+\end{document}
