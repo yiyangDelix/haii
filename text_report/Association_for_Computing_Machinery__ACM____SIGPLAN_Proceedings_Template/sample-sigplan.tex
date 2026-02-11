@@ -1,0 +1,133 @@
+\documentclass[sigplan,screen]{acmart}
+
+% ---- Disable ACM metadata ----
+\settopmatter{printacmref=false}
+\settopmatter{printfolios=false}
+
+% ---------- FULL CLEAN ACM METADATA ----------
+\settopmatter{
+  printacmref=false,
+  printccs=false,
+  printfolios=false
+}
+
+\renewcommand\footnotetextcopyrightpermission[1]{}
+
+\setcopyright{none}
+
+\usepackage{fancyhdr}
+\pagestyle{plain}
+\fancyhf{}
+
+
+\begin{document}
+
+%%
+%% The "title" command has an optional parameter,
+%% allowing the author to define a "short title" to be used in page headers.
+\title{Empathy in the Machine: How Avatar Personalities Shape Human Learning Experience}
+
+%%
+\author{Araks Karapetyan}
+\affiliation{%
+  \institution{Technical University Munich}
+}
+\email{akarapetyan533@gmail.com}
+
+\author{Brishila Firza}
+\affiliation{%
+  \institution{Technical University Munich}}
+\email{brishilafirza@gmail.com}
+
+\author{Nergis Bilge}
+\affiliation{%
+  \institution{Technical University Munich}
+}
+\email{nergisbilge@gmail.com}
+
+\author{Yiyang Xie}
+\affiliation{%
+ \institution{Technical University Munich}
+}
+\email{ge59jev@mytum.de}
+
+\author{Yusong Yang}
+\affiliation{%
+  \institution{Technical University Munich}
+}
+\email{yusong.yang.tum@gmail.com}
+
+%%
+%% The abstract is a short summary of the work to be presented in the
+%% article.
+\begin{abstract}
+  This project presents Psychology Learning Experiment, an AI-supported 
+  educational system that combines large language models (LLMs) to 
+  investigate human–AI interaction in psychology learning contexts. 
+  The system is designed to demonstrates how prompt-based LLM control 
+  and avatar-supported interfaces can be combined into a reproducible 
+  experimental platform for studying learner–AI interactions, and it 
+  provides design insights for future empathetic AI tutoring systems.
+\end{abstract}
+
+%%
+%% Keywords. The author(s) should pick words that accurately describe
+%% the work being presented. Separate the keywords with commas.
+\keywords{AI Tutors; Large Language Models; Human–AI Interaction; 
+Prompt Engineering; User Study; Educational Technology; Psychology Education}
+%% A "teaser" image appears between the author and affiliation
+%% information and the body of the document, and typically spans the
+%% page.
+
+%%
+%% This command processes the author and affiliation and title
+%% information and builds the first part of the formatted document.
+\maketitle
+% ---- Disable ACM metadata ----
+\settopmatter{printacmref=false}
+\settopmatter{printfolios=false}
+% ---------- FULL CLEAN ACM METADATA ----------
+\settopmatter{
+  printacmref=false,
+  printccs=false,
+  printfolios=false
+}
+\renewcommand\footnotetextcopyrightpermission[1]{}
+\setcopyright{none}
+\pagestyle{plain}
+\fancyhf{}
+
+
+\input{pages/01_introduction}
+
+\input{pages/02_relatedWork}
+
+\input{pages/03_system_design}
+
+\input{pages/04_methodology}
+
+\input{pages/05_result}
+
+\input{pages/06_discussion}
+
+\input{pages/07_conclusion}
+
+
+%%
+%% The next two lines define the bibliography style to be used, and
+%% the bibliography file.
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{sample-base}
+
+
+%%
+%% If your work has an appendix, this is the place to put it.
+\appendix
+
+\input{pages/08_Appendix}
+\input{pages/09_contribution}
+
+\end{document}
+\endinput
+%%
+%% End of file `sample-sigplan.tex'.

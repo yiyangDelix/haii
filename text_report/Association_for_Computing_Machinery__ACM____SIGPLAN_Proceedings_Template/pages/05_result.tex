@@ -1,0 +1,164 @@
+\section{Results}
+\subsection{Overview of Data Analysis}
+A total of 30 valid participant datasets were analyzed (Empathy Mode: n=15; Neutral Mode: n=15). \textbf{Table~\ref{tab:learning_outcomes}} presents the comprehensive descriptive statistics and independent samples t-test results for all measured variables, categorized by learning outcomes, interaction engagement, and cognitive metrics.
+\\
+In terms of learning effectiveness, \textbf{no significant difference was observed} between the Empathy Mode (M = 7.00, SD = 2.27) and the Neutral Mode (M = 6.93, SD = 2.94), t(28) = 0.07, p = .945. Similarly, users in both conditions reported comparable levels of sentiment (p = .682) and confusion rate (p = .610). The total interaction duration and average response time also showed no statistically significant variations between the two groups (see Table~\ref{tab:learning_outcomes}).
+\\
+However, analyses revealed \textbf{significant disparities} in behavioral engagement and interaction quality. As shown in Table 1, the Empathy Mode elicited a substantially higher volume of user output (p < .001) and communication density (p < .001). In contrast, the Neutral Mode demonstrated significantly higher Lexical Diversity (p < .001). These significant findings are visualized and detailed in the following subsections.
+
+\begin{table*}[t]
+\centering
+\caption{Comparison of Learning, Interaction, and User Experience Metrics Between Empathy and Neutral Modes}
+\label{tab:learning_outcomes}
+\label{tab:empathy_vs_neutral}
+\footnotesize
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Measure} 
+& \textbf{Empathy Mode} 
+& \textbf{Neutral Mode} 
+& \textbf{$t$} 
+& \textbf{$p$} 
+& \textbf{Cohen's $d$} \\
+& \textbf{Mean (SD)} 
+& \textbf{Mean (SD)} 
+&  &  &  \\
+\midrule
+\multicolumn{6}{l}{\textit{Learning Outcomes}} \\
+Learning Score 
+& 7.00 (2.27) & 6.93 (2.94) & 0.07 & .945 & 0.03 \\
+Confusion Rate 
+& 0.02 (0.04) & 0.01 (0.02) & 0.52 & .610 & 0.19 \\
+
+\midrule
+\multicolumn{6}{l}{\textit{Interaction Quantity}} \\
+Total Word Count 
+& 181.13 (38.10) & 31.67 (11.13) & 14.58 & $<.001^{***}$ & 5.33 \\
+Turn Count 
+& 27.93 (4.15) & 23.40 (2.38) & 3.67 & .001$^{**}$ & 1.34 \\
+Total Duration (s) 
+& 701.27 (271.67) & 904.87 (347.25) & -1.79 & .085 & -0.65 \\
+
+\midrule
+\multicolumn{6}{l}{\textit{Interaction Quality \& Cognition}} \\
+Communication Density (Words/Min) 
+& 16.98 (5.54) & 2.46 (1.59) & 9.75 & $<.001^{***}$ & 3.56 \\
+Lexical Diversity (TTR) 
+& 0.19 (0.07) & 0.41 (0.15) & -5.24 & $<.001^{***}$ & -1.92 \\
+Average Response Time (s) 
+& 18.65 (6.81) & 24.70 (12.84) & -1.61 & .122 & -0.59 \\
+Questions Asked 
+& 1.00 (2.10) & 0.20 (0.41) & 1.44 & .169 & 0.53 \\
+
+\midrule
+\multicolumn{6}{l}{\textit{User Experience}} \\
+Sentiment Score 
+& 7.93 (2.34) & 8.27 (2.05) & -0.41 & .682 & -0.15 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+
+\subsection{Interaction Quantity and Duration}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{pic/01WordCount.png}
+  \caption{Word Count}
+  \label{fig:wordcount}
+\end{figure}
+
+The analysis of interaction quantity revealed significant disparities between the two groups. As illustrated in Figure~\ref{fig:wordcount}, the \textbf{Total User Word Count} in the Empathy Mode (M = 181.13, SD = 38.10) was significantly higher than that in the Neutral Mode (M = 31.67, SD = 11.13), t(28) = 14.58, p < .001. This represents a substantial effect size (Cohen's d = 5.33), indicating that users in the Empathy condition generated nearly six times more text than those in the Neutral condition.
+\\
+Similarly, the \textbf{Turn Count (Figure~\ref{fig:turncount}} was significantly higher for the Empathy group (M = 27.93, SD = 4.15) compared to the Neutral group (M = 23.40, SD = 2.38), t(28) = 3.67, p = .001. Regarding time investment, \textbf{Total Duration (Figure~\ref{fig:duration})} showed a different trend. Although the Neutral group recorded a longer average duration (M = 904.87s) compared to the Empathy group (M = 701.27s), this difference was not statistically significant (t = -1.79, p = .085), and the Neutral group exhibited a notably larger standard deviation (SD = 347.25), suggesting high variability in user dwell time.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{pic/02TurnCount.png}
+  \caption{Turn Count}
+  \label{fig:turncount}
+\end{figure}
+
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{pic/03Duration.png}
+  \caption{Duration}
+  \label{fig:duration}
+\end{figure}
+
+\subsection{Interaction Quality and Linguistic Patterns}
+To investigate the nature of user responses, we analyzed Communication Density and Lexical Diversity. \textbf{Figure~\ref{fig:communicationdensity}} demonstrates a significant difference in \textbf{Communication Density}, defined as user words per minute. The Empathy Mode elicited a much higher density (M = 16.98 WPM) compared to the Neutral Mode (M = 2.46 WPM), t(28) = 9.75, p < .001, indicating a more rapid and fluid exchange of information.
+\\
+In contrast, as shown in \textbf{Figure~\ref{fig:ttr}}, the \textbf{Lexical Diversity (TTR)} presented an inverse pattern. The Neutral Mode showed a significantly higher TTR (M = 0.41, SD = 0.15) than the Empathy Mode (M = 0.19, SD = 0.07), t(28) = -5.24, p < .001. This metric indicates that while the Neutral group produced less total text, the vocabulary used was proportionately more diverse, whereas the Empathy group's extensive output contained more repetitive linguistic structures.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{pic/04CommunicationDensity.png}
+  \caption{Communication Density}
+  \label{fig:communicationdensity}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{pic/05LexicalDiversity_TTR.png}
+  \caption{Lexical Diversity (TTR)}
+  \label{fig:ttr}
+\end{figure}
+
+
+\subsection{Process Trajectory}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{pic/06SentimentTrajectoryperTurn.png}
+  \caption{Sentiment Trajectory per Turn}
+  \label{fig:sentimentTrajectoryperTurn}
+\end{figure}
+
+The temporal evolution of the interaction was analyzed to understand user engagement over the course of the session. \textbf{Figure~\ref{fig:sentimentTrajectoryperTurn} (Sentiment Trajectory)} displays the sentiment polarity for each turn. Both groups maintained positive sentiment throughout the session, with the Empathy group showing a slightly more stable positive trend, although the overall mean sentiment scores did not differ significantly (p = .682).
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{pic/07DialogueDepthEvolution.png}
+  \caption{Dialogue Depth Evolution}
+  \label{fig:dialogueDepthEvolution}
+\end{figure}
+\textbf{Figure~\ref{fig:dialogueDepthEvolution} (Dialogue Depth Evolution)} illustrates the average word count per turn across the timeline. A distinct divergence is observable: the Empathy group (represented by the red line) maintained or increased their word count per turn as the dialogue progressed, signifying sustained engagement. Conversely, the Neutral group (blue line) exhibited a flat or declining trend, often reverting to brief responses after the initial turns.
+
+\subsection{Correlation Analysis}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{pic/08CorrelationHeatmap.png}
+  \caption{Correlation Heatmap}
+  \label{fig:correlationHeatmap}
+\end{figure}
+A Pearson correlation analysis was conducted to examine the relationships between the measured variables, as visualized in the \textbf{Heatmap (Figure~\ref{fig:correlationHeatmap})}. A strong positive correlation was observed between \textbf{User Word Count} and \textbf{Turn Count} (r > .80), as well as between \textbf{User Word Count} and \textbf{Communication Density} (r > .90). Notably, Total Duration showed a weak to negligible correlation with \textbf{Learning Score} ($r \approx 0.30$), suggesting that merely spending more time in the system did not directly translate to higher test scores. Furthermore, \textbf{Lexical Diversity} was negatively correlated with \textbf{User Word Count} ($r  \approx -0.85$), confirming that longer interactions tended to result in lower type-token ratios due to the natural repetition of function words in conversational speech.
+
+\subsection{Knowledge Acquisition}
+To evaluate the overall effectiveness of the educational intervention, we compared the aggregated knowledge accuracy between the Pre-survey (N = 61) and Post-survey (N = 32) phases. Due to the anonymous nature of the survey collection which prevented paired data matching, a group-level analysis was conducted using an independent samples t-test.
+\begin{table}[h]
+\centering
+\caption{Comparison of Knowledge Accuracy Between Pre-Survey and Post-Survey}
+\label{tab:pre_post_accuracy}
+\footnotesize
+\setlength{\tabcolsep}{2pt}
+\begin{tabular}{lccccccc}
+\toprule
+\textbf{Group} 
+& \textbf{N} 
+& \textbf{Mean Accuracy (\%)} 
+& \textbf{SD (\%)} 
+& \textbf{$t$} 
+& \textbf{df} 
+& \textbf{$p$} 
+& \textbf{Cohen's $d$} \\
+\midrule
+Pre-Survey 
+& 61 & 69.18 & 32.16 & -1.35 & 70.82 & .181 & 0.29 \\
+Post-Survey 
+& 32 & 78.13 & 29.34 &  &  &  &  \\
+\bottomrule
+\end{tabular}
+\end{table}
+\\
+Table~\ref{tab:pre_post_accuracy} presents the descriptive statistics and t-test results for the knowledge assessment. The Post-survey group demonstrated a higher mean accuracy (M = 78.13\%, SD = 29.34\%) compared to the Pre-survey baseline (M = 69.18\%, SD = 32.16\%). Although this difference did not reach statistical significance (t(70.82) = -1.35, p = .181), the analysis revealed a small-to-medium effect size (Cohen's d = 0.29), suggesting a positive trend in knowledge retention following the avatar-based learning session.

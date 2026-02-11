@@ -1,0 +1,384 @@
+
+\section{System Design}
+The system supports text-based real-time interaction and reserves 
+interfaces for future extensions such as voice input/output and 
+more complex Avatar behaviors.
+
+\subsection{Overall System Architecture}
+The system adopts a modular, loosely coupled architectural design 
+to support rapid prototyping, functional expansion, and subsequent 
+user studies.
+
+\subsubsection{Core technology components}
+
+The main system consists of the following core components:
+
+\begin{itemize}
+\item {\textbf{Streamlit}}
+\\
+Used to build an interactive web interface, 
+supporting rapid prototyping and user testing. Streamlit serves as the 
+primary front-end entry point. It is responsible for receiving user 
+input, displaying LLM responses, recording user IDs, redirecting to 
+pre/post-test links, and interacting with other backend calling logic.
+
+\item {\textbf{OpenAI API}}
+\\
+This project uses the gpt-4o-mini model 
+as the core LLM for dialogue. The choice of gpt-4o-mini over models 
+like GPT-3.5 or more advanced versions is primarily based on its 
+balance of response speed, stability, and cost. This makes it suitable 
+for the development and experimentation of an interactive teaching system.
+
+
+\item {\textbf{Tiktoken}}
+\\
+Used for prompt management and token 
+counting. It helps avoid exceeding model context limits by 
+controlling context length, which also contributes to optimizing 
+response speed and ensuring the stability of the teaching system.
+
+
+\item {\textbf{Ready Player Me}}
+\\
+Used to generate a 3D visual 
+Avatar prototype, providing a basic character model with facial 
+expressions and body behaviors for the teaching system. This 
+Avatar primarily aims to enhance the presence and interactive 
+feel of the AI teacher within the system.
+
+\item {\textbf{Pandas}}
+\\
+Used for structured processing of experimental data locally, 
+including the organization of conversation logs, learning 
+metrics, and statistical features.
+
+
+\item {\textbf{Requests}}
+\\
+Used for communication with external services, e.g., 
+redirection via Google Forms links and API requests.
+
+
+\item {\textbf{Google Sheets API}}
+\\
+(gspread + google-auth) Used for automatically synchronizing 
+experimental data to 
+online spreadsheets in Google Drive. This method supports 
+multi-person collaboration, real-time updates, and 
+subsequent data analysis.
+
+\item {\textbf{Edge-TTS and Mutagen (Early Version)}}
+\\
+Used in early versions of the system for experimental 
+speech synthesis and audio processing, but later removed 
+due to experimental control and stability issues.
+\end{itemize}
+
+\subsubsection{System Workflow Overview}
+At the system level, the learning system supports a 
+complete learning and data collection loop, including 
+key stages such as pre-experiment questionnaire, interactive 
+learning, and post-experiment data recording. The system 
+connects to external questionnaire platforms via a web interface 
+and continuously logs multi-dimensional data related to learning 
+behaviors throughout the process.
+\\
+It should be noted that this section only provides an 
+overview of the overall workflow from the perspectives 
+of system functionality and technical support. Details 
+regarding the specific experimental design, participant 
+grouping, experimental steps, and questionnaire content 
+will be explained in detail in 
+the \textbf{Avatar Learning Environment} chapter.
+\\
+In the current system implementation, the system 
+supports the following workflow capabilities:
+\\
+\begin{itemize}
+\item {}
+It can guide users to complete external questionnaires 
+(e.g., Pre-Survey) before learning begins and generate 
+a unique participant identifier (UUID) for data linkage 
+without collecting personally identifiable information.
+
+\item {}
+It enables multi-turn text-based interaction powered 
+by the LLM during the learning process and records 
+learning behaviors and dialogue context in real-time.
+
+\item {}
+It supports exporting complete interaction data after 
+the learning and automatically synchronizing one 
+structured document (CSV and Google Sheets) for 
+subsequent analysis.
+\end{itemize}
+By clearly distinguishing the system workflow, this 
+project achieves a decoupling between system implementation 
+and experimental methodology in its architectural design. 
+This provides a foundation for the reproducibility and 
+extensibility of future research.
+
+
+\subsection{LLM Architecture and Prompt Design}
+In an LLM based teaching system, maintaining role consistency, 
+stability of teaching strategies, and controllability of dialogue 
+is a key challenge. Unlike systems that rely solely on user 
+input (User Prompt) to drive a model, this project employs the 
+System Prompt as a core to implement teaching objectives, role 
+definitions, and interaction rules.
+\\
+This section systematically introduces the design rationale for 
+the System Prompt in this project and its application in 
+teaching scenarios.
+
+\subsubsection{Role Division of System/User/Assistant}
+This project builds the LLM interaction logic based on the 
+tripartite dialogue structure (System Prompt, User Prompt, 
+Assistant Response) provided by OpenAI. Their responsibilities 
+are divided as follows:
+
+\begin{itemize}
+\item {\textbf{System Prompt}}
+\\
+The System Prompt is an instruction provided by the system 
+at the beginning of a conversation, used to define the LLM's 
+overall behavior, tone, style, and interaction rules. In this 
+project, the System Prompt primarily fulfills the following 
+functions:
+
+\begin{itemize}
+\item {\textbf{Role Definition}}
+\\
+Clearly defines the LLM's 
+identity in the teaching scenario, e.g., a psychology teacher.
+
+\item {\textbf{Behavioral Constraints}}
+\\
+Specifies the scope 
+of the model's responses, e.g., avoiding answers unrelated to 
+psychology learning.
+
+
+\item {\textbf{Context Provision}}
+\\
+Provides the model with 
+background information about the teaching scenario and 
+knowledge domain, making its responses better align with 
+the expected learning objectives.
+
+\item {\textbf{Output Specification}}
+\\
+Constrains the 
+structure and style of the model's answers, e.g., 
+emphasizing clarity of explanation or supportive feedback.
+\end{itemize}
+
+Unlike the User Prompt, the System Prompt is implicit within 
+the LLM's internal processing and is not directly presented 
+to the user. It serves as a stable, controllable technical 
+foundation for the teaching system.
+
+\item {\textbf{User Prompt}}
+\\
+The User Prompt represents the learner's input, which may 
+include questions, answers, or reflective statements. Within 
+the learning flow, the User Prompt is used to trigger 
+different teaching phases, such as introducing new concepts, 
+quizzes, or summaries.
+
+\item {\textbf{Assistant Response}}
+\\
+Generated by the LLM based on both the System Prompt and 
+the User Prompt, it is used to provide explanations, 
+guidance, or feedback.
+\end{itemize}
+
+This structure allows teaching design to be directly embedded 
+into the teaching system logic through Prompt Engineering.
+
+\subsubsection{System Prompt Examples for Teaching Roles}
+In this project, different teaching Avatars are differentiated 
+through distinct System Prompts. For example:
+
+\begin{itemize}
+\item {\textbf{Supportive Avatar}}
+\\
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{pic/empathyProm.png}
+  \caption{System Prompt for the Supportive Avatar}
+\end{figure}
+Its System Prompt emphasizes empathy, encouraging language, 
+and guided questioning, aiming to create a relaxed and supportive 
+learning atmosphere. {\itshape (Full examples are not shown in the 
+main text due to space constraints.)}
+
+
+\item {\textbf{Neutral Avatar}}
+\\
+Its System Prompt focuses on scientific explanation, conceptual 
+accuracy, and objective feedback, minimizing emotional expression 
+and highlighting information delivery. {\itshape (Full examples 
+are not shown in the main text due to space constraints.)}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{pic/neutralProm.png}
+  \caption{System Prompt for the Neutral Avatar}
+\end{figure}
+
+\end{itemize}
+
+
+This method of role modeling based on System Prompts enables the 
+construction of different experimental conditions by merely modifying 
+the prompt conditions, while keeping the learning content consistent. 
+This design provides a clear and controllable technical foundation 
+for the comparative analysis of different modes in subsequent user studies.
+
+\subsection{User Interface Design of the Learning System}
+The UI of the system is designed to provide learners with an intuitive, 
+relaxed learning experience that incorporates a sense of social presence, 
+while maintaining experimental control. The overall interface follows 
+the "Principle of Minimal Interference" \cite{software}, i.e., minimizing unrelated 
+functions to avoid introducing variables that could affect learning 
+and experimental results.
+
+\subsubsection{Experiment Entry Interface}
+Before entering the formal learning session, the system first presents 
+an entry page designed to guide learners through completing a 
+pre-experiment questionnaire (Pre-survey). The page header displays
+a uniform greeting:
+
+\begin{itemize}
+\item {} {\itshape Welcome! Before we begin the session with the AI teacher, 
+please complete a short survey.}
+\end{itemize}
+
+This prompt informs users of the experimental procedure, emphasizing 
+to complete the questionnaire before interacting with the AI teacher. 
+Furthermore, the interface provides clear operational instructions:
+\begin{itemize}
+\item {} {\itshape Please keep this tab open. After submitting the Google 
+Form, return here and click the button below. And please keep all 
+the pages open during the whole experiment.
+}
+\end{itemize}
+These instructions help avoid data loss caused by users closing, 
+refreshing, or navigating away from the page, thereby ensuring 
+workflow continuity and data integrity.
+\\
+To enable data linkage between the Pre-test and Post-test, the 
+system automatically generates and displays a unique Participant 
+Identifier on this page, for example:
+\begin{itemize}
+\item {} {\itshape Your Participant ID: SUB-157e9d77 (Auto-filled) }
+\end{itemize}
+This auto-generated ID, shown to the user, allows for matching 
+multi-stage data from the same participant without collecting 
+personally sensitive information, thus preserving anonymity and 
+traceability.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{pic/beginUI.png}
+  \caption{Experiment Entry Interface}
+\end{figure}
+\\
+After the Pre-survey, users can either click 
+\begin{itemize}
+\item {} {\itshape Click Here to Start Pre-Survey.}
+\end{itemize}
+to proceed, or, if they have already completed 
+it, select
+\begin{itemize}
+\item {} {\itshape I have submitted the Pre-Survey.}
+\end{itemize}
+to enter the learning 
+session directly. This design reduces user operational effort and 
+minimizes experimental interruptions caused by unclear procedures.
+
+\subsubsection{Learning Interface Layout}
+Upon entering the learning system, the interface adopts a split-pane layout:
+\begin{itemize}
+\item {} Left Pane: 3D Avatar Display
+\item {} Right Pane: Text-based AI Dialogue Window
+\end{itemize}
+
+The left pane features a 3D female Avatar. Based on prior 
+research and surveys\cite{genderDiff} indicating that, compared to male or 
+neutral figures, female teacher images can more easily help 
+learners feel relaxed, establish trust, and maintain higher 
+levels of concentration during learning. The primary purpose 
+of this Avatar is to enhance the sense of social presence 
+during learning, rather than to simulate complex emotions or behaviors.
+\\
+Users can interact with the Avatar via basic mouse controls—dragging 
+to rotate the view and using the scroll wheel to zoom—adding a 
+degree of explorability and immersion to the interface.
+\\
+The right pane contains a text dialogue window similar to those 
+found in ChatGPT or Gemini. Learners can freely type questions, 
+answer system-generated quiz items, or request further explanations 
+within this window.
+\\
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{pic/InterUI.png}
+  \caption{Learning Interface Layout}
+\end{figure}
+This design leverages a highly familiar interaction paradigm for 
+large language models, lowering the learning curve and allowing 
+users to focus their attention on the learning content itself 
+rather than on interface mechanics.
+
+\subsubsection{Functional Iteration and Design Trade-offs}
+In earlier versions of the system, we experimented with features such as:
+\begin{itemize}
+\item {} Avatar speech output (TTS) and speech input (STT)
+\item {} Teacher style selection (e.g., Supportive Avatar, Neutral Avatar)
+\item {} A manual Participant ID entry window
+\end{itemize}
+However, these features were progressively removed during later 
+development and testing for the following primary reasons:
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=30mm]{pic/manualID.png}
+  \caption{Manual Participant ID Entry, Speech In- and Output}
+\end{figure}
+\begin{itemize}
+\item {\textbf{Voice Feature Limitations}}
+\\
+The voice functionality proved highly sensitive to network 
+conditions. Users experienced significant variations in latency. 
+This unpredictability not only impacted user experience but also 
+introduced uncontrolled variables for experimental results.
+
+\item {\textbf{Decreasing Expectancy Effects}}
+\\
+Allowing users to actively choose a teacher style would make 
+them explicitly aware of their experimental condition. 
+This could influence subjective behavior. To better control 
+variables and ensure experimental validity, this feature was 
+deprecated.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=30mm]{pic/selectModel.png}
+  \caption{Teacher Style Selection}
+\end{figure}
+
+\item {\textbf{Streamlining Data Integrity}}
+\\
+The initial design requiring manual Participant ID entry. 
+However, during testing, some users ignored the step 
+entirely, leading to difficulties in data matching and 
+increasing the complexity of subsequent data cleaning and 
+analysis. This functionality was ultimately replaced by the 
+auto-generated ID method to improve data consistency and 
+experimental control.
+\end{itemize}
+
+The final interface design of this system strikes a balance 
+between user experience, learning support, and experimental 
+control, providing a stable and reliable foundation for data 
+collection and analysis in the subsequent user study.
